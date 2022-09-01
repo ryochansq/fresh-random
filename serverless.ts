@@ -8,6 +8,7 @@ const serverlessConfiguration: AWS = {
   plugins: ['serverless-esbuild'],
   provider: {
     name: 'aws',
+    region: 'ap-northeast-1',
     runtime: 'nodejs14.x',
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
