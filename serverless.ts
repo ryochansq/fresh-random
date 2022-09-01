@@ -16,7 +16,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   functions: { main },
-  package: { individually: true },
+  package: { individually: true, include: ['src/images/**/*'] },
   custom: {
     esbuild: {
       bundle: true,
