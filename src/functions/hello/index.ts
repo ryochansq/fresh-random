@@ -4,7 +4,10 @@ export default {
   handler: `${handlerPath(__dirname)}/handler.main`,
   events: [
     {
-      schedule: 'cron(40 5 * * ? *)',
+      schedule: {
+        name: 'fresh-random',
+        rate: ['cron(0 3 ? * MON *)'],
+      },
     },
   ],
 };
