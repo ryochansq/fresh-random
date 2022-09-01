@@ -27,6 +27,13 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+      loader: {
+        '.png': 'file',
+        '.jpg': 'file',
+        '.jpeg': 'file',
+        '.svg': 'file',
+        '.gif': 'file',
+      },
     },
   },
 };

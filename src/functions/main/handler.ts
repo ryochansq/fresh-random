@@ -3,8 +3,10 @@ import { middyfy } from '@libs/lambda';
 
 const getAllStudents = (): string[] => {
   const path = process.cwd();
-  const filenames = fs.readdirSync(`${path}/src`);
+  const filenames = fs.readdirSync(`${path}`);
   console.log({ path, filenames });
+  const hoge = require('../../assets/中元すず香.jpg');
+  console.info(hoge);
   return [];
 };
 
