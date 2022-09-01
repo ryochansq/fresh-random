@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import sharp from 'sharp';
 import { middyfy } from '@libs/lambda';
 
 // https://www.nxworld.net/js-array-shuffle.html
