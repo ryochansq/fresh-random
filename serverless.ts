@@ -5,6 +5,7 @@ import main from '@functions/main';
 const serverlessConfiguration: AWS = {
   service: 'fresh-random',
   frameworkVersion: '3',
+  useDotenv: true,
   plugins: ['serverless-esbuild'],
   provider: {
     name: 'aws',
@@ -16,7 +17,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   functions: { main },
-  package: { individually: true, include: ['src/images/**/*'] },
+  package: { individually: true, patterns: ['src/students/images/**/*'] },
   custom: {
     esbuild: {
       bundle: true,
@@ -27,6 +28,7 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+      external: ['@napi-rs/canvas'],
       loader: {
         '.png': 'file',
         '.jpg': 'file',

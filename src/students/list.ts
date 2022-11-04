@@ -3,7 +3,7 @@ export type Student = {
   name: string;
 };
 
-export const students: Student[] = [
+export const allStudents: Student[] = [
   { id: '2011n01', name: '武藤彩未' },
   { id: '2011n02', name: '松井愛莉' },
   { id: '2011n03', name: '三吉彩花' },
