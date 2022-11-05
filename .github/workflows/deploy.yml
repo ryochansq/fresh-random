@@ -20,7 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install --immutable --immutable-cache --check-cache
       - name: Create dot env file
-        run: echo ${{ secrets.TWITTER_ENV }} > .env && cat .env
+        run: echo "${{ secrets.TWITTER_ENV }}" > .env
       - name: serverless deploy
         uses: serverless/github-action@v3.1
         with:
