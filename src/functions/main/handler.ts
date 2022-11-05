@@ -45,12 +45,14 @@ const concatImages = async (students: Student[]) => {
 };
 
 const tweet = (text: string, image: Buffer) => {
-  twitterClient.post('media/upload', { media: image }, (_, media) => {
+  twitterClient.post('media/upload', { media: image }, (error, media) => {
+    if (error) console.error(error);
     const status = {
       status: text,
       media_ids: media.media_id_string,
     };
-    twitterClient.post('statuses/update', status, (_, tweet) => {
+    twitterClient.post('statuses/update', status, (error, tweet) => {
+      if (error) console.error(error);
       console.info({ tweet });
     });
   });
