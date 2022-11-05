@@ -44,25 +44,30 @@ const concatImages = async (students: Student[]) => {
   return canvas.toBuffer('image/png');
 };
 
-const tweet = (text: string, image: Buffer) => {
-  twitterClient.post('media/upload', { media: image }, (error, media) => {
-    if (error) console.error(error);
-    const status = {
-      status: text,
-      media_ids: media.media_id_string,
-    };
-    twitterClient.post('statuses/update', status, (error, tweet) => {
+const tweet = async (text: string, image: Buffer): Promise<void> => {
+  return await new Promise((resolve) => {
+    twitterClient.post('media/upload', { media: image }, (error, media) => {
       if (error) console.error(error);
-      console.info({ tweet });
+      const status = {
+        status: text,
+        media_ids: media.media_id_string,
+      };
+      twitterClient.post('statuses/update', status, (error, tweet) => {
+        if (error) console.error(error);
+        console.info({ tweet });
+        resolve();
+      });
     });
   });
 };
 
 const main = async () => {
   const fourStudents = selectFourStudents(allStudents);
+  console.info({ fourStudents });
   const text = createText(fourStudents);
+  console.info({ text });
   const image = await concatImages(fourStudents);
-  tweet(text, image);
+  await tweet(text, image);
 };
 
 export const handler = middyfy(main);
