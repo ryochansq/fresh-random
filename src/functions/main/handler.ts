@@ -45,15 +45,21 @@ const concatImages = async (students: Student[]) => {
 };
 
 const tweet = async (text: string, image: Buffer): Promise<void> => {
-  return await new Promise((resolve) => {
+  return await new Promise((resolve, reject) => {
     twitterClient.post('media/upload', { media: image }, (error, media) => {
-      if (error) console.error(error);
+      if (error) {
+        console.error(error);
+        reject(error);
+      }
       const status = {
         status: text,
         media_ids: media.media_id_string,
       };
       twitterClient.post('statuses/update', status, (error, tweet) => {
-        if (error) console.error(error);
+        if (error) {
+          console.error(error);
+          reject(error);
+        }
         console.info({ tweet });
         resolve();
       });
