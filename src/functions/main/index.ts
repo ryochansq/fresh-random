@@ -12,7 +12,7 @@ export default {
     {
       schedule: {
         name: 'fresh-random',
-        rate: ['cron(18 14 ? * SAT *)'],
+        rate: ['cron(20 14 ? * SAT *)'],
       },
     },
   ],
